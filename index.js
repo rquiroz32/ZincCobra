@@ -40,7 +40,7 @@ const questions = [
         type: 'list',
         name: 'licenses',
         message: "Please select a license you would like to use.",
-        choices: ["To report bugs or suggest enhancements please use my contact info listed further down below", "Code of Conduct: all communication should be friendly and professional, any deviation from these guidelines will result in termination of privileges."]
+        choices: ["GNU GPL v3","GNU GPL v2","GNU AGPL v3","IBM Public License Version 1.0","The MIT License"]
     },
     {
         type: 'input',
@@ -57,6 +57,13 @@ const questions = [
 // function to write README file
 
 function writeToFile(fileName, data) {
+    fs.writeFile(fileName, generateMarkdown(data), err => {
+        if (err) {
+            console.log(err)
+        }
+        console.log(`Succesfully wrote ${fileName} readme`)
+    })
+    
 }
 
 // function to initialize program
@@ -66,11 +73,13 @@ function init() {
     inquirer.prompt(questions).then((data) => {
         //console.log(data)
         let fileName = `${data.title.toLowerCase().split(' ').join('')}.ReadMe.md`
-        let output = generateMarkdown(data)
-        //writeToFile(fileName, data);
+        //let output = generateMarkdown(data)
+        writeToFile(fileName, data);
       
     })
 }
+
+
 // function call to initialize program
 
 init();
