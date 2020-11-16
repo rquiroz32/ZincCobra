@@ -13,7 +13,7 @@ const questions = [
     {
         type: 'input',
         name: 'description',
-        message: "Please enter a description for your project?"
+        message: "Please enter a description for your project."
     },
     {
         type: 'input',
@@ -40,7 +40,7 @@ const questions = [
         type: 'list',
         name: 'licenses',
         message: "Please select a license you would like to use.",
-        choices: ["GNU GPL v3","GNU GPL v2","GNU AGPL v3","IBM Public License Version 1.0","The MIT License"]
+        choices: ["GNU GPL v3", "GNU GPL v2", "GNU AGPL v3", "IBM Public License Version 1.0", "The MIT License"]
     },
     {
         type: 'input',
@@ -63,7 +63,7 @@ function writeToFile(fileName, data) {
         }
         console.log(`Succesfully wrote ${fileName} readme`)
     })
-    
+
 }
 
 // function to initialize program
@@ -71,11 +71,8 @@ function init() {
     console.log("Initializing Program")
 
     inquirer.prompt(questions).then((data) => {
-        //console.log(data)
         let fileName = `${data.title.toLowerCase().split(' ').join('')}.ReadMe.md`
-        //let output = generateMarkdown(data)
         writeToFile(fileName, data);
-      
     })
 }
 
